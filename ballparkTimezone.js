@@ -73,7 +73,7 @@ Date.prototype.getTimezone = function() {
 		"39600:-1800:1333206000":"Australia/Lord_Howe",
 		"39600:-3600:1333209600":"Australia/Sydney",
 		"39600:0:0":"Pacific/Pohnpei",
-		"41400:0:0":"Pacific/Norfolk"
+		"41400:0:0":"Pacific/Norfolk",
 		"43200:0:0":"Asia/Anadyr",
 		"46800:-3600:1327154400":"Pacific/Fiji",
 		"46800:-3600:1333202400":"Antarctica/South_Pole",
