@@ -91,7 +91,7 @@ Date.prototype.getTimezone = function() {
 		return new Date(new Date().getFullYear(), 5, 1, 0, 0, 0, 0).getTimezoneOffset() * -60;
 	}
 
-	function getDSTOffset() {
+	var getDSTOffset = function() {
 		return getJuneTimezoneOffset() - getJanuaryTimezoneOffset();
 	}
 
