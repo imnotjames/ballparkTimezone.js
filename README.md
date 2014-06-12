@@ -10,4 +10,4 @@ between non-daylight savings times and daylight savings times.
 
     var timezone = new Date().getTimezone();
 
-[Check it out here](www.notjam.es/ballparkTimezone.js/)
+[Check it out here](http://www.notjam.es/ballparkTimezone.js/)
