@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link href='http://fonts.googleapis.com/css?family=Montserrat|Poiret+One' rel='stylesheet' type='text/css'>
+
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" />
+
+		<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+
+		<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+		<style type="text/css">
+			html, body {
+				margin: 0;
+				padding: 0;
+
+				background-color: #7EA66C;
+			}
+
+			legend {
+				font-family: 'Montserrat', sans-serif;
+				border-bottom-color: #333;
+			}
+
+			.container {
+				margin-top: 3em;
+			}
+
+			.row {
+				margin-top: 3em;
+			}
+
+			pre {
+				background-color: #F2EFE1;
+			}
+
+			.btn-default {
+				background-color: #F7E7C1;
+			}
+
+			#i-think {
+				color: #F2EFE1;
+				font-family: 'Poiret One', cursive;
+				font-size: 60px;
+			}
+
+			#your-timezone {
+				font-family: 'Montserrat', sans-serif;
+				font-size: 80px;
+				display: block;
+				text-align: right;
+				line-height: 80px;
+				margin-top: -30px;
+			}
+		</style>
+
+		<script type="text/javascript" src="https://raw.githubusercontent.com/imnotjames/ballparkTimezone.js/master/ballparkTimezone.js"></script>
+
+		<script type="text/javascript" id="js-code">
+			jQuery(function() {
+				var timezone = new Date().getTimezone();
+
+				jQuery('#your-timezone').text(timezone);
+			});
+		</script>
+
+		<script type="text/javascript">
+			jQuery(function() {
+				var code = jQuery('#js-code').text().replace(/(^\n|\s*$)/g, '');
+
+				code = code.replace(new RegExp("^" + (code.match(/^\t+/)[0]), "gm"), "");
+
+				jQuery('#code').text(code);
+			});
+		</script>
+	</head>
+	<body>
+		<div class="container">
+			<div class="row">
+				<div clas="col-xs-12">
+					<span id="i-think">I think your timezone might be..</span>
+					<span id="your-timezone"></span>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-xs-8 col-xs-offset-2">
+					<legend>
+						How does it work?
+					</legend>
+
+					<pre id="code"></pre>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-xs-8 col-xs-offset-2 text-center">
+					<a class="btn btn-default" href="https://github.com/imnotjames/ballparkTimezone.js">
+						Check it out on Github
+					</a>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
