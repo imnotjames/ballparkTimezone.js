@@ -83,18 +83,21 @@
 		"50400:0:0":"Pacific/Kiritimati",
 	};
 
-	var getJanuaryTimezoneOffset = function() {
-		return new Date(new Date().getFullYear(), 0, 1, 0, 0, 0, 0).getTimezoneOffset() * -60;
-	};
+	var getTimezoneOffset = function(timestamp) {
+		var d = new Date();
 
-	var getJuneTimezoneOffset = function() {
-		return new Date(new Date().getFullYear(), 5, 1, 0, 0, 0, 0).getTimezoneOffset() * -60;
+		d.setTime(timestamp * 1000);
+
+		return d.getTimezoneOffset() * -60;
 	};
 
 	Date.prototype.getTimezone = function() {
-		var savingsOffset = getJuneTimezoneOffset() - getJanuaryTimezoneOffset()
+		var januaryTimezoneOffset = getTimezoneOffset(1388552400);
+		var juneTimezoneOffset = getTimezoneOffset(1401595200);
 
-		var tzKey = getJanuaryTimezoneOffset() + ':' + savingsOffset;
+		var savingsOffset = juneTimezoneOffset - januaryTimezoneOffset;
+
+		var tzKey = januaryTimezoneOffset + ':' + savingsOffset;
 
 		for (var a in timezones) {
 			if (timezones.hasOwnProperty(a)) {
@@ -106,13 +109,10 @@
 				if (tzInfo[1] == 0)
 					return timezones[a];
 
-				var before = new Date();
-				before.setTime((parseInt(tzInfo[2]) - 1) * 1000);
+				var beforeOffset = getTimezoneOffset(parseInt(tzInfo[2]) - 1);
+				var afterOffset = getTimezoneOffset(parseInt(tzInfo[2]));
 
-				var after = new Date();
-				after.setTime(parseInt(tzInfo[2]) * 1000);
-
-				if (before.getTimezoneOffset() != after.getTimezoneOffset())
+				if (beforeOffset !== afterOffset)
 					return timezones[a];
 			}
 		}
