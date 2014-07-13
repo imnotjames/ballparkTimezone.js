@@ -97,22 +97,24 @@
 		var tzKey = getJanuaryTimezoneOffset() + ':' + savingsOffset;
 
 		for (var a in timezones) {
-			if (a.indexOf(tzKey) != 0)
-				continue;
+			if (timezones.hasOwnProperty(a)) {
+				if (a.indexOf(tzKey) != 0)
+					continue;
 
-			var tzInfo = a.split(':');
+				var tzInfo = a.split(':');
 
-			if (tzInfo[1] == 0)
-				return timezones[a];
+				if (tzInfo[1] == 0)
+					return timezones[a];
 
-			var before = new Date();
-			before.setTime((parseInt(tzInfo[2]) - 1) * 1000);
+				var before = new Date();
+				before.setTime((parseInt(tzInfo[2]) - 1) * 1000);
 
-			var after = new Date();
-			after.setTime(parseInt(tzInfo[2]) * 1000);
+				var after = new Date();
+				after.setTime(parseInt(tzInfo[2]) * 1000);
 
-			if (before.getTimezoneOffset() != after.getTimezoneOffset())
-				return timezones[a];
+				if (before.getTimezoneOffset() != after.getTimezoneOffset())
+					return timezones[a];
+			}
 		}
 
 		return null;
